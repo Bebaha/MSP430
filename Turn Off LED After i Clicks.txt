@@ -12,18 +12,19 @@ main() {
 	P3OUT = PB;
 	P9OUT = LED;
 	P3REN = PB;
-	long i = 0;
+	long Counter = 0;
+	int Counts = 10; // Number of Clicks before output turns off
 
 
 	while(1) {
 
 		if ((PB & P3IN) == 0) {
 
-			i = i+1;
+			Counter = Counter +1;
 			while((PB & P3IN) == 0);
 
 							}
-		if (i == 10) {
+		if (Counter == Counts) {
 			P9OUT = P9OUT & LED_OFF;
 			break;
 			}
