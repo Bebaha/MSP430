@@ -1,0 +1,35 @@
+#include <msp430.h> 
+
+#define PB 0b00001000  // P3.3
+#define LED 0b01000000 // P9.6
+#define LED_OFF 0b10111111
+
+main() {
+
+	WDTCTL = 0x5A80;
+	PM5CTL0 = 0xFFFE;
+	P9DIR = LED;
+	P3OUT = PB;
+	P9OUT = LED;
+	P3REN = PB;
+	long i = 0;
+
+
+	while(1) {
+
+		if ((PB & P3IN) == 0) {
+
+			i = i+1;
+			while((PB & P3IN) == 0);
+
+							}
+		if (i == 10) {
+			P9OUT = P9OUT & LED_OFF;
+			break;
+			}
+		}
+	
+
+	while(2);
+
+}
